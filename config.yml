@@ -1,0 +1,38 @@
+environment:
+    rewards:
+        death:            -200
+        apple:            100
+        timestep:         1
+        towards_apple:    0
+        away_from_apple:  0
+
+    vision:     8
+    grid_size:  6
+
+
+mode:
+    train:       false
+    agent_play:  true
+    teach:       false
+
+    # Just in case you want to play snake
+    user_play:   false
+
+
+window:
+    # Will visually display the environment if true
+    active:  false
+    size:    400
+    title:   "Snek"
+
+    colours:
+        grid:
+            - [34, 48, 66]
+            - [21, 32, 46]
+
+        snake:  [255, 255, 255]
+        apple:  [255, 0, 0]
+
+
+misc:
+    debug:  false

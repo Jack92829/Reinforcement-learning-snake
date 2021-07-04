@@ -4,8 +4,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-logger.warning("Testing")
-
 
 class Environment:
     _valid_parameters = {
@@ -24,14 +22,4 @@ class Environment:
     ]
 
     def __init__(self) -> None:
-        self._env = _Environment(
-            grid_size,
-            vision,
-            starting_snake,
-            starting_apple
-        )
-
-
-
-
-
+        ...

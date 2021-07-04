@@ -63,9 +63,9 @@ class Window(metaclass=MetaConstruction):
 class Colours(metaclass=MetaConstruction):
     parent = "Window"
 
-    grid: list[list]
-    snake: list
-    apple: list
+    grid: list[list[int]]
+    snake: list[int]
+    apple: list[int]
 
 
 class Misc(metaclass=MetaConstruction):

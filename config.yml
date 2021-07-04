@@ -2,7 +2,7 @@ environment:
     rewards:
         death:            -200
         apple:            100
-        timestep:         1
+        timestep:         0
         towards_apple:    0
         away_from_apple:  0
 

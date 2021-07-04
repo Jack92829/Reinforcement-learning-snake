@@ -15,19 +15,19 @@ class Point:
         self.direction = direction
 
     @property
-    def left(self):
+    def left(self):  # The point to the immediate left of self
         return Point(self.x - 1, self.y, self.direction)
 
     @property
-    def right(self):
+    def right(self):  # The point to the immediate right of self
         return Point(self.x + 1, self.y, self.direction)
 
     @property
-    def up(self):
+    def up(self):  # The point immediately above self
         return Point(self.x, self.y + 1, self.direction)
 
     @property
-    def down(self):
+    def down(self):  # The point immediately below self
         return Point(self.x, self.y - 1, self.direction)
 
     def __eq__(self, other) -> bool:

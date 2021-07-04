@@ -33,5 +33,7 @@ class Apple:
     def reset(self) -> None:
         self.position = self.starting_position
 
+        logging.debug("Successfully reset apple")
+
     def __str__(self) -> str:
         return f"Apple(position={self.position})"

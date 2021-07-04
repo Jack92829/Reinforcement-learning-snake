@@ -1,6 +1,10 @@
+# Compiled files
 __pycache__/
+
+# Directory containing log files
 logs/
 
+# VSCode
 .vscode/
 
 # Temporary folders

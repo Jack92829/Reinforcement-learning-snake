@@ -1,9 +1,15 @@
+import logging
 from math import hypot
 
 from utils import Point
 from environment.snake import Snake
 from environment.apple import Apple
-import __main__.constants.Environment.Rewards as REWARDS
+from __main__ import constants
+
+REWARDS = constants.Environment.Rewards
+VISION = constants.Environment.Vision
+
+logger = logging.getLogger(__name__)
 
 
 class Environment:
@@ -11,6 +17,10 @@ class Environment:
         self.grid_size = grid_size
         self.apple = apple
         self.snake = snake
+
+    @property
+    def state(self):
+        ...
 
     def perform_action(self, action: int) -> None:
         """Perform the action determined by the agent"""
@@ -24,7 +34,7 @@ class Environment:
         elif action == 2:  # Turn right
             self.snake.direction = directions[directions.index(current_direction) - 1]
 
-    def step(self):
+    def step(self) -> ...:
         """Perform a timestep, updating the environment"""
         reward = 0
 
@@ -32,6 +42,7 @@ class Environment:
             reward += REWARDS.death
             self.reset()
 
+            logger.debug("Snake has died")
             return ...
 
         # Update the snakes position
@@ -53,6 +64,8 @@ class Environment:
 
         reward += REWARDS.timestep
 
+        logger.debug(f"Completed a timestep with a reward of {reward}")
+
     def find_distance_to(self, other: Point) -> float:
         """Calculate the distance between the apple and another point"""
         return hypot(self.apple.x - other.x, self.apple.y - other.y)
@@ -61,3 +74,6 @@ class Environment:
         """Reset the environment back to its initial state"""
         self.snake.reset()
         self.apple.change_position(self.snake)
+
+print("we do be in the environment")
+logger.critical("testing")

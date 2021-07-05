@@ -20,7 +20,7 @@ class Apple:
 
         logging.info("Successfully initialised an instance of class Apple")
 
-    def change_position(self, snake: Snake) -> None:
+    def change_position(self, snake: "Snake") -> None:
         while True:
             x = randrange(0, self.grid_size)
             y = randrange(0, self.grid_size)

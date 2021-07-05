@@ -7,7 +7,7 @@ with open("config.yml", "r") as f:
     _CONFIG = yaml.safe_load(f)
 
 
-class MetaConstruction(type):
+class Construct(type):
     def __init__(cls, name, bases, dct):
         if cls.parent is not None:
             setattr(globals()[cls.parent], cls.__name__, cls)
@@ -26,14 +26,14 @@ class MetaConstruction(type):
                 raise AttributeError(attribute) from err
 
 
-class Environment(metaclass=MetaConstruction):
+class Environment(metaclass=Construct):
     parent = None
 
     vision: int
     grid_size: int
 
 
-class Rewards(metaclass=MetaConstruction):
+class Rewards(metaclass=Construct):
     parent = "Environment"
 
     death: int
@@ -43,7 +43,14 @@ class Rewards(metaclass=MetaConstruction):
     away_from_apple: int
 
 
-class Mode(metaclass=MetaConstruction):
+class Vision(metaclass=Construct):
+    parent = "Environment"
+
+    type: str
+    directions: int
+
+
+class Mode(metaclass=Construct):
     parent = None
 
     train: bool
@@ -52,7 +59,7 @@ class Mode(metaclass=MetaConstruction):
     user_play: bool
 
 
-class Window(metaclass=MetaConstruction):
+class Window(metaclass=Construct):
     parent = None
 
     active: bool
@@ -60,7 +67,7 @@ class Window(metaclass=MetaConstruction):
     title: str
 
 
-class Colours(metaclass=MetaConstruction):
+class Colours(metaclass=Construct):
     parent = "Window"
 
     grid: list[list[int]]
@@ -68,7 +75,7 @@ class Colours(metaclass=MetaConstruction):
     apple: list[int]
 
 
-class Misc(metaclass=MetaConstruction):
+class Misc(metaclass=Construct):
     parent = None
 
     debug: bool

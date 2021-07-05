@@ -1,12 +1,15 @@
 environment:
     rewards:
-        death:            -200
-        apple:            100
+        death:            -10
+        apple:            1
         timestep:         0
         towards_apple:    0
         away_from_apple:  0
 
-    vision:     8
+    vision:
+        type:        "binary"
+        directions:  8
+
     grid_size:  6
 
 

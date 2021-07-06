@@ -30,7 +30,7 @@ class Point:
     @property
     def down(self):  # The point immediately below self
         return Point(self.x, self.y - 1, self.direction)
-    
+
     def copy(self):
         return Point(self.x, self.y, self.direction)
 

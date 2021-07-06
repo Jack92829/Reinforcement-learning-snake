@@ -48,6 +48,12 @@ class Point:
         else:
             return False
 
+    def __gt__(self, other) -> bool:
+        if self.x > other and self.y > other:
+            return True
+        else:
+            return False
+
     def __add__(self, other: Union["Point", "Slope"]) -> "Point":
         return Point(self.x + other.x, self.y + other.y)
 
@@ -74,9 +80,26 @@ class LineOfSight:
         self.apple = None
         self.snake = None
         self.wall = 0
-    
+
     def __contains__(self, other) -> bool:
         ...
 
 
-VISION_TYPES = "10"
+VISION_TYPES = {
+    4: (
+        Slope(1, 0),
+        Slope(0, -1),
+        Slope(0, -1),
+        Slope(1, 0)
+    ),
+    8: (
+        Slope(1, -1),  # Left-up
+        Slope(1, 0),  # Up
+        Slope(1, 1),  # Right-up
+        Slope(0, -1),  # Left
+        Slope(0, 1),  # Right
+        Slope(-1, -1),  # Left-down
+        Slope(-1, 0),  # Down
+        Slope(-1, 1)  # Right-down
+    )
+}

@@ -13,14 +13,32 @@ logger = logging.getLogger(__name__)
 
 
 class Environment:
-    def __init__(self, grid_size: int, apple: Apple, snake: Snake) -> None:
+    def __init__(
+        self,
+        grid_size: int,
+        apple_position: tuple[int, int],
+        snake_position: list[tuple[int, int]]
+    ) -> None:
         self.grid_size = grid_size
-        self.apple = apple
-        self.snake = snake
+        self.apple = Apple(*apple_position, grid_size)
+        self.snake = Snake(grid_size, VISION.type, VISION.directions, snake_position)
 
     @property
     def state(self):
-        ...
+        """Produces a state_list that can be fed to a neural network"""
+        state_list = []
+        direction_mapping = {
+            "left": [1, 0, 0, 0],
+            "right": [0, 1, 0, 0],
+            "up": [0, 0, 1, 0],
+            "down": [0, 0, 0, 1]
+        }
+
+        for line_of_sight in self.snake.view_surroundings(self.apple):
+            state_list.extend(line_of_sight)
+
+        state_list.extend(direction_mapping[self.snake.direction])
+        return state_list
 
     def perform_action(self, action: int) -> None:
         """Perform the action determined by the agent"""
@@ -75,5 +93,4 @@ class Environment:
         self.snake.reset()
         self.apple.change_position(self.snake)
 
-print("we do be in the environment")
-logger.critical("testing")
+logger.debug("testing this")

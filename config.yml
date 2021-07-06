@@ -11,6 +11,7 @@ environment:
         directions:  8
 
     grid_size:  6
+    initial_snake:  [[2, 1], [1, 1], [0, 1]]
 
 
 mode:
@@ -28,13 +29,16 @@ window:
     size:    400
     title:   "Snek"
 
+    vision_lines_active:  false
+
     colours:
         grid:
             - [34, 48, 66]
             - [21, 32, 46]
 
-        snake:  [255, 255, 255]
-        apple:  [255, 0, 0]
+        snake:         [255, 255, 255]
+        apple:         [255, 0, 0]
+        vision_lines:  [0, 255, 0]
 
 
 misc:

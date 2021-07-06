@@ -6,7 +6,7 @@ from __main__ import constants
 
 def init() -> None:
     """Set up and configure logging"""
-    log_format = logging.Formatter("%(levelname)s || %(name)s || %(message)s || %(asctime)s")
+    log_format = logging.Formatter("%(levelname)s || %(name)s || %(asctime)s || %(message)s")
 
     log_file = Path("logs", "rl_snake.log")
     log_file.parent.mkdir(exist_ok=True)

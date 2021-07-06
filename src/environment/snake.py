@@ -1,6 +1,6 @@
 import logging
 from collections import deque
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Generator, Union, Any
 
 from utils import Point, Slope, VISION_TYPES
 from __main__ import constants
@@ -33,13 +33,13 @@ class Snake:
         try:
             self.vision = VISION_TYPES[vision_magnitude]
         except KeyError as err:
-            logging.critial("Failed to find vision type of value {vision}", exc_info=True)
+            logging.critial("Failed to find vision of magnitude {vision_magnitude}", exc_info=True)
             raise err
 
         logging.info("Successfully initialised an instance of class Snake")
 
     def update_positions(self) -> None:
-        """I really want to call it 'slither'"""
+        """Moves the snake in its direction of travel (I really want to call it 'slither')"""
         head = self.positions[0]
         self.positions = self.positions.rotate(1)
 
@@ -51,38 +51,43 @@ class Snake:
             self.positions[0] = head.up
         elif direction == "down":
             self.positions[0] = head.down
-    
-    def view_surroundings(self, apple: "Apple"):
-        head = self.positions[0]
 
-        for gradient in self.vision_type:
-            ...
-    
-    def _view_direction(self, gradient: Slope, apple_position: Point) -> tuple[int, int]:
-        # We don't want to start on the head
-        position = self.positions[0] + gradient
+    def view_surroundings(
+        self,
+        apple: "Apple"
+    ) -> Generator[tuple[Any, Any, Any]], None, None]:
+        """Yield lines of sight from the snakes head"""
+        for gradient in self.vision:
+            yield self._view_direction(gradient, apple.position)
+
+    def _view_direction(self, gradient: Slope, apple_position: Point) -> tuple[Any, Any, Any]]:
+        """Travels along a line of sight and collects information to be used in the state array"""
+        position = self.positions[0] + gradient  # We don't want to start on the head
+        steps = 1
 
         apple_found = False
         body_found = False
 
-        steps = 0
+        # Value decreases the closer we get, 1 signifies it's not in the line of sight
+        distance_to_apple = 1.0
+        distance_to_self = 1.0
 
-        while position < self.grid_size:
+        while position > -1 and position < self.grid_size:
             if position == apple_position:
                 apple_found = True
-                distance_to_apple = steps / (len(self.grid_size) - 1)
+                distance_to_apple = (steps - 1) / (self.grid_size - 1)
 
             if not body_found and position in self.positions:
-                body_found = True
-                distance_to_self = steps / (len(self.grid_size) - 1)
+                body_found = True  # Prevent observing further occurences of the snake
+                distance_to_self = (steps - 1) / (self.grid_size - 1)
 
             position += gradient
             steps += 1
 
-        distance_to_wall = steps / (len(self.grid_size) - 1)
+        distance_to_wall = (steps - 1) / (self.grid_size - 1)
 
         if self.vision_type == "binary":
-            return (apple_found, body_found, distance_to_wall)
+            return (int(apple_found), int(body_found), distance_to_wall)
         elif self.vision_type == "magnitudinous":
             return (distance_to_apple, distance_to_self, distance_to_wall)
 

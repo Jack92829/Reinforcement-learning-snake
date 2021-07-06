@@ -1,7 +1,12 @@
+import logging
+
 import config as constants
 import log
+from environment.environment import Environment
+
 log.init()
 
-from environment import environment
+logger = logging.getLogger(__name__)
 
-print("testing")
+
+logger.info("Ending session\n\n")

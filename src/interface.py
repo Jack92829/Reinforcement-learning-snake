@@ -26,5 +26,6 @@ class Environment:
     def __init__(self) -> None:
         self._environment = Environment(
             constants.Environment.grid_size,
-    
-            )
+            constants.Environment.initial_snake,
+            constants.Environment.initial_apple
+        )

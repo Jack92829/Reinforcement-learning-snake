@@ -16,8 +16,8 @@ class Environment:
     def __init__(
         self,
         grid_size: int,
-        apple_position: tuple[int, int],
-        snake_position: list[tuple[int, int]]
+        apple_position: list[int],
+        snake_position: list[list[int]]
     ) -> None:
         self.grid_size = grid_size
         self.apple = Apple(*apple_position, grid_size)

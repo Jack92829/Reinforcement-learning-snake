@@ -11,7 +11,9 @@ environment:
         directions:  8
 
     grid_size:  6
+
     initial_snake:  [[2, 1], [1, 1], [0, 1]]
+    initial_apple:  [3, 2]
 
 
 mode:

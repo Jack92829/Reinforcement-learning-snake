@@ -26,5 +26,5 @@ class Environment:
     def __init__(self) -> None:
         self._environment = Environment(
             constants.Environment.grid_size,
-            
+    
             )

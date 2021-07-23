@@ -9,7 +9,7 @@ class Point:
         self,
         x: int,
         y: int,
-        direction: Optional[str] = None
+        direction: str = None
     ) -> None:
         self.x = x
         self.y = y

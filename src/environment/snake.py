@@ -60,7 +60,7 @@ class Snake:
         for gradient in self.vision:
             yield self._view_direction(gradient, apple.position)
 
-    def _view_direction(self, gradient: Slope, apple_position: Point) -> tuple[Any, Any, Any]]:
+    def _view_direction(self, gradient: Slope, apple_position: Point) -> tuple[Any, Any, Any]:
         """Travels along a line of sight and collects information to be used in the state array"""
         position = self.positions[0] + gradient  # We don't want to start on the head
         steps = 1
@@ -72,7 +72,7 @@ class Snake:
         distance_to_apple = 1.0
         distance_to_self = 1.0
 
-        while position > -1 and position < self.grid_size:
+        while position >= 0 and position < self.grid_size:
             if position == apple_position:
                 apple_found = True
                 distance_to_apple = (steps - 1) / (self.grid_size - 1)

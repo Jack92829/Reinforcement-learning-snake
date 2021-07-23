@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "rl_snake"
+version = "0.1.0"
+description = "A machine learning model trained to play a game of snake through reinforcement learning"
+authors = ["Jack92829 <jack92829@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+arcade = "^2.5.7"
+PyYAML = "^5.4.1"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.9.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

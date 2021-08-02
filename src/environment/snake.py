@@ -55,7 +55,7 @@ class Snake:
     def view_surroundings(
         self,
         apple: "Apple"
-    ) -> Generator[tuple[Any, Any, Any]], None, None]:
+    ) -> Generator[tuple[Any, Any, Any], None, None]:
         """Yield lines of sight from the snakes head"""
         for gradient in self.vision:
             yield self._view_direction(gradient, apple.position)

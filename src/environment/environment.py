@@ -23,6 +23,8 @@ class Environment:
         self.apple = Apple(*apple_position, grid_size)
         self.snake = Snake(grid_size, VISION.type, VISION.directions, snake_position)
 
+        logger.info("Successfully initialised an instance of class Environment")
+
     @property
     def state(self):
         """Produces a state_list that can be fed to a neural network"""

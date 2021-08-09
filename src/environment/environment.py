@@ -1,5 +1,6 @@
 import logging
 from math import hypot
+from typing import Union
 
 from utils import Point
 from environment.snake import Snake
@@ -26,7 +27,7 @@ class Environment:
         logger.info("Successfully initialised an instance of class Environment")
 
     @property
-    def state(self):
+    def state(self) -> list[Union[int, float]]:
         """Produces a state_list that can be fed to a neural network"""
         state_list = []
         direction_mapping = {

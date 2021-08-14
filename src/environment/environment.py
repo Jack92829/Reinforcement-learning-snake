@@ -50,10 +50,9 @@ class Environment:
 
         if action == 0:  # Turn left
             self.snake.direction = directions[directions.index(current_direction) - 3]
-        elif action == 1:  # Continue straight
-            return
         elif action == 2:  # Turn right
             self.snake.direction = directions[directions.index(current_direction) - 1]
+        # Otherwise, continue straight forwards
 
     def step(self) -> ...:
         """Perform a timestep, updating the environment"""

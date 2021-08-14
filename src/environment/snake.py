@@ -1,6 +1,6 @@
 import logging
 from collections import deque
-from typing import TYPE_CHECKING, Generator, Any
+from typing import TYPE_CHECKING, Generator
 
 from utils import Point, Slope, VISION_TYPES
 from __main__ import constants
@@ -60,7 +60,7 @@ class Snake:
         for gradient in self.vision:
             yield self._view_direction(gradient, apple.position)
 
-    def _view_direction(self, gradient: Slope, apple_position: Point) -> tuple[Any, Any, Any]:
+    def _view_direction(self, gradient: Slope, apple_position: Point) -> tuple[float, float, float]:
         """Travels along a line of sight and collects information to be used in the state array"""
         position = self.positions[0] + gradient  # We don't want to start on the head
         steps = 1

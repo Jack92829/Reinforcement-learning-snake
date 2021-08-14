@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import Union
 
 
 class Point:
@@ -68,7 +68,7 @@ class Slope:
     """Objects storing a gradient, used to travel along a line of sight"""
     __slots__ = ("x", "y")
 
-    def __init__(self, rise, run) -> None:
+    def __init__(self, rise: int, run: int) -> None:
         self.x = rise
         self.y = run
 

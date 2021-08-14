@@ -1,6 +1,6 @@
 import logging
 from collections import deque
-from typing import TYPE_CHECKING, Generator, Union, Any
+from typing import TYPE_CHECKING, Generator, Any
 
 from utils import Point, Slope, VISION_TYPES
 from __main__ import constants
@@ -55,7 +55,7 @@ class Snake:
     def view_surroundings(
         self,
         apple: "Apple"
-    ) -> Generator[tuple[Any, Any, Any], None, None]:
+    ) -> Generator[tuple[float, float, float], None, None]:
         """Yield lines of sight from the snakes head"""
         for gradient in self.vision:
             yield self._view_direction(gradient, apple.position)
@@ -87,7 +87,7 @@ class Snake:
         distance_to_wall = (steps - 1) / (self.grid_size - 1)
 
         if self.vision_type == "binary":
-            return (int(apple_found), int(body_found), distance_to_wall)
+            return (float(apple_found), float(body_found), distance_to_wall)
         elif self.vision_type == "magnitudinous":
             return (distance_to_apple, distance_to_self, distance_to_wall)
 

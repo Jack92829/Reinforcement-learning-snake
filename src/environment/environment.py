@@ -94,5 +94,3 @@ class Environment:
         """Reset the environment back to its initial state"""
         self.snake.reset()
         self.apple.change_position(self.snake)
-
-logger.debug("testing this")

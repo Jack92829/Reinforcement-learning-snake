@@ -131,7 +131,7 @@ class Snake:
 
         logging.debug("Successfully reset snake")
 
-    def __contains__(self, other) -> bool:
+    def __contains__(self, other: Point) -> bool:
         if other in self.positions:
             return True
         else:

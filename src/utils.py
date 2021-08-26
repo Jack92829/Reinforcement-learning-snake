@@ -73,18 +73,6 @@ class Slope:
         self.y = run
 
 
-class LineOfSight:
-    __slots__ = ("apple", "snake", "wall")
-
-    def __init__(self) -> None:
-        self.apple = None
-        self.snake = None
-        self.wall = 0
-
-    def __contains__(self, other) -> bool:
-        ...
-
-
 VISION_TYPES = {
     4: (
         Slope(1, 0),
@@ -93,13 +81,13 @@ VISION_TYPES = {
         Slope(1, 0)
     ),
     8: (
-        Slope(1, -1),  # Left-up
-        Slope(1, 0),  # Up
-        Slope(1, 1),  # Right-up
-        Slope(0, -1),  # Left
-        Slope(0, 1),  # Right
+        Slope(1, -1),   # Left-up
+        Slope(1, 0),    # Up
+        Slope(1, 1),    # Right-up
+        Slope(0, -1),   # Left
+        Slope(0, 1),    # Right
         Slope(-1, -1),  # Left-down
-        Slope(-1, 0),  # Down
-        Slope(-1, 1)  # Right-down
+        Slope(-1, 0),   # Down
+        Slope(-1, 1)    # Right-down
     )
 }
